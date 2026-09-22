@@ -326,14 +326,36 @@ h1, h2, h3, h4, .brand-title {
   100% { transform: rotate(360deg); }
 }
 
-.mini-logo-img {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  border-radius: 8px;
+.mini-logo-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
   background: #000000;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  padding: 2px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 0.9;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+}
+
+.mini-wed {
+  font-family: 'Alex Brush', cursive;
+  font-size: 19px;
+  color: #ffffff;
+  transform: translateY(2px);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.mini-gatha {
+  font-family: 'Noto Serif Gujarati', 'Rasa', serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--gold-primary);
+  letter-spacing: 0.8px;
+  margin-top: -3px;
 }
 
 .avatar-inner {
@@ -347,23 +369,46 @@ h1, h2, h3, h4, .brand-title {
   justify-content: center;
   overflow: hidden;
   border: 3px solid #0b0b0e;
-  box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.3);
+  box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.35);
 }
 
-/* Exact Wed Gatha Brand Logo Image Inside Avatar */
-.brand-logo-img {
+/* Exact Wed Gatha Brand Logo Component Inside Avatar */
+.brand-logo-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 10px;
   background: #000000;
   border-radius: 50%;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.35));
+  user-select: none;
+  line-height: 0.92;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.avatar-inner:hover .brand-logo-img {
+.avatar-inner:hover .brand-logo-badge {
   transform: scale(1.08);
+}
+
+.badge-wed {
+  font-family: 'Alex Brush', cursive;
+  font-size: 52px;
+  font-weight: normal;
+  color: #ffffff;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.8), 0 0 24px rgba(212, 175, 55, 0.3);
+  transform: translateY(4px);
+  letter-spacing: -0.5px;
+}
+
+.badge-gatha {
+  font-family: 'Noto Serif Gujarati', 'Rasa', serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 3px;
+  margin-top: -6px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
 
 .verified-pill {
@@ -1262,14 +1307,33 @@ h1, h2, h3, h4, .brand-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-.footer-logo-img {
-  max-width: 140px;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
+.footer-logo-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 0.95;
+}
+
+.footer-wed {
+  font-family: 'Alex Brush', cursive;
+  font-size: 42px;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  transform: translateY(3px);
+}
+
+.footer-gatha {
+  font-family: 'Noto Serif Gujarati', 'Rasa', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 3px;
+  margin-top: -6px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
 .footer-tagline {
