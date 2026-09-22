@@ -326,6 +326,16 @@ h1, h2, h3, h4, .brand-title {
   100% { transform: rotate(360deg); }
 }
 
+.mini-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #000000;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 2px;
+}
+
 .avatar-inner {
   position: relative;
   width: 100%;
@@ -340,33 +350,20 @@ h1, h2, h3, h4, .brand-title {
   box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
-/* Wed Gatha Brand Logo Inside Avatar */
-.logo-display-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: 0.95;
-  user-select: none;
+/* Exact Wed Gatha Brand Logo Image Inside Avatar */
+.brand-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+  background: #000000;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.35));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.logo-script-wed {
-  font-family: var(--font-script);
-  font-size: 46px;
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-  transform: translateY(2px);
-}
-
-.logo-gujarati-gatha {
-  font-family: var(--font-gujarati);
-  font-size: 20px;
-  font-weight: 700;
-  background: var(--gold-text-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 2px;
-  margin-top: -6px;
+.avatar-inner:hover .brand-logo-img {
+  transform: scale(1.08);
 }
 
 .verified-pill {
@@ -1265,17 +1262,14 @@ h1, h2, h3, h4, .brand-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
 }
 
-.footer-logo .logo-script-wed {
-  font-size: 32px;
-}
-
-.footer-logo .logo-gujarati-gatha {
-  font-size: 16px;
-  margin-left: 4px;
+.footer-logo-img {
+  max-width: 140px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
 }
 
 .footer-tagline {

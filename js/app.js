@@ -588,8 +588,9 @@ function renderQRCodeSVG() {
       </g>
 
       <!-- Center Brand Badge -->
-      <circle cx="100" cy="100" r="24" fill="#0b0b0e" stroke="#d4af37" stroke-width="2.5"/>
-      <text x="100" y="105" text-anchor="middle" font-family="'Alex Brush', cursive" font-size="19" fill="#ffffff">Wed</text>
+      <circle cx="100" cy="100" r="26" fill="#0b0b0e" stroke="#d4af37" stroke-width="2.5"/>
+      <text x="100" y="98" text-anchor="middle" font-family="'Alex Brush', cursive" font-size="18" fill="#ffffff">Wed</text>
+      <text x="100" y="112" text-anchor="middle" font-family="'Rasa', serif" font-size="9" font-weight="700" fill="#d4af37">ગાથા</text>
     </svg>
   `;
 }
