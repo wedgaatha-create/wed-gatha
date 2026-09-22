@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- Primary Meta Tags -->
+  <title>Wed Gatha | Luxury Wedding Photography &amp; Cinematography</title>
+  <meta name="title" content="Wed Gatha | Luxury Wedding Photography &amp; Cinematography">
+  <meta name="description" content="Wed Gatha (વેડ ગાથા) - Capturing timeless royal weddings, candid emotions, and cinematic love stories. Available worldwide for luxury destination weddings.">
+  <meta name="theme-color" content="#0b0b0e">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Wed Gatha | Luxury Wedding Photography">
+  <meta property="og:description" content="Wed Gatha (વેડ ગાથા) - Weaving timeless wedding stories. Tap to view portfolio, save contact, or book your wedding date.">
+  <meta property="og:image" content="assets/hero_wedding.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Rasa:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Golden Ambient Particles Canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Sound Toggle & Share Header Bar -->
+  <header class="top-nav-bar">
+    <div class="brand-mini">
+      <span class="gold-dot"></span>
+      <span class="mini-brand-text">WED GATHA • DIGITAL NFC</span>
+    </div>
+    <div class="top-actions">
+      <button class="icon-btn sound-toggle-btn" id="soundToggle" title="Toggle Royal Ambient Music" aria-label="Toggle Royal Music">
+        <span class="music-wave">
+          <span></span><span></span><span></span>
+        </span>
+        <i class="fa-solid fa-music"></i>
+      </button>
+      <button class="icon-btn share-trigger-btn" id="topShareBtn" title="Share Digital Card" aria-label="Share Card">
+        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Mobile-First Application Container -->
+  <main class="app-wrapper">
+
+    <!-- HERO PROFILE CARD -->
+    <section class="card hero-profile-card">
+      <div class="hero-cover-banner">
+        <img src="assets/hero_wedding.jpg" alt="Wed Gatha Royal Wedding" class="hero-banner-img">
+        <div class="banner-gradient-overlay"></div>
+        <div class="luxury-badge">
+          <i class="fa-solid fa-gem"></i> Luxury Wedding Cinematography
+        </div>
+      </div>
+
+      <div class="profile-details-wrapper">
+        <div class="profile-avatar-container">
+          <div class="avatar-gold-halo"></div>
+          <div class="avatar-inner">
+            <!-- Brand Logo Display -->
+            <div class="logo-display-box">
+              <span class="logo-script-wed">Wed</span>
+              <span class="logo-gujarati-gatha">ગાથા</span>
+            </div>
+          </div>
+          <div class="verified-pill" title="Verified Creator">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+        </div>
+
+        <div class="profile-identity">
+          <h1 class="brand-title">Wed Gatha</h1>
+          <p class="brand-gujarati">વેડ ગાથા • <span>Stories of Eternal Love</span></p>
+          <p class="brand-bio">
+            Preserving intimate glances, royal heritage rituals, and grand emotions into timeless cinematic heirlooms.
+          </p>
+
+          <div class="location-badge">
+            <i class="fa-solid fa-location-dot"></i> Gujarat, India • Available Worldwide
+          </div>
+        </div>
+
+        <!-- PRIMARY 1-TAP SAVE CONTACT BUTTON (NFC Focus) -->
+        <div class="primary-vcard-action">
+          <button class="btn btn-gold-shimmer save-contact-btn" id="saveContactBtn">
+            <i class="fa-solid fa-address-card"></i>
+            <span>Save Contact to Phone</span>
+            <div class="shimmer-effect"></div>
+          </button>
+        </div>
+
+        <!-- QUICK ACTION GRID -->
+        <div class="quick-action-grid">
+          <a href="https://wa.me/919586860707?text=Hello%20Wed%20Gatha!%20I%20found%20your%20NFC%20Card%20and%20would%20love%20to%20discuss%20wedding%20photography%20packages." target="_blank" rel="noopener" class="action-tile action-whatsapp">
+            <div class="tile-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <span class="tile-label">WhatsApp</span>
+            <span class="tile-hint">Quick Chat</span>
+          </a>
+
+          <a href="tel:+919586860707" class="action-tile action-call">
+            <div class="tile-icon"><i class="fa-solid fa-phone"></i></div>
+            <span class="tile-label">Call Us</span>
+            <span class="tile-hint">+91 9586860707</span>
+          </a>
+
+          <a href="https://www.instagram.com/wedgatha?stkn=MXJyeWE0MDk2M3F6dQ%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="action-tile action-instagram">
+            <div class="tile-icon"><i class="fa-brands fa-instagram"></i></div>
+            <span class="tile-label">Instagram</span>
+            <span class="tile-hint">@wedgatha</span>
+          </a>
+
+          <a href="mailto:wedgaatha@gmail.com?subject=Wedding%20Photography%20Inquiry%20-%20Wed%20Gatha" class="action-tile action-email">
+            <div class="tile-icon"><i class="fa-solid fa-envelope"></i></div>
+            <span class="tile-label">Email</span>
+            <span class="tile-hint">wedgaatha@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIP GOOGLE DRIVE SHOWCASE MASTER CARD -->
+    <section class="card drive-showcase-card">
+      <div class="drive-card-header">
+        <div class="drive-pill">
+          <i class="fa-brands fa-google-drive"></i> LIVE CLIENT CLOUD
+        </div>
+        <span class="drive-status-pulse"><span class="pulse-ring"></span> 4K High-Res</span>
+      </div>
+
+      <div class="drive-card-body">
+        <h2 class="drive-title">Client Master Sample Gallery</h2>
+        <p class="drive-desc">
+          Browse full-resolution sample albums, candid wedding sets, and 4K cinema exports directly on our official Google Drive archive.
+        </p>
+
+        <!-- Preview Grid Snippets -->
+        <div class="drive-preview-strip">
+          <div class="drive-thumb"><img src="assets/bridal_portrait.jpg" alt="Drive Preview 1"></div>
+          <div class="drive-thumb"><img src="assets/royal_phere.jpg" alt="Drive Preview 2"></div>
+          <div class="drive-thumb"><img src="assets/prewedding_sunset.jpg" alt="Drive Preview 3"></div>
+          <div class="drive-thumb more-thumb">
+            <span>+100<br><small>Photos</small></span>
+          </div>
+        </div>
+
+        <a href="https://drive.google.com/drive/folders/1QYVouFYn7nww5XHSVLKSc4MqvQLV4239" target="_blank" rel="noopener" class="btn btn-drive-access">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>Open High-Res Google Drive</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- KEY STATS & TRUST STRIP -->
+    <section class="card stats-card">
+      <div class="stat-item">
+        <span class="stat-number" data-target="250">250+</span>
+        <span class="stat-label">Royal Weddings</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">4.9★</span>
+        <span class="stat-label">180+ Reviews</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">4K 10-Bit</span>
+        <span class="stat-label">Cinema Grade</span>
+      </div>
+    </section>
+
+    <!-- CURATED PORTFOLIO GALLERY -->
+    <section class="card portfolio-section" id="portfolioSection">
+      <div class="section-heading-box">
+        <span class="section-kicker">Signature Works</span>
+        <h2 class="section-title">The Wedding Showcase</h2>
+        <div class="gold-ornament-line">
+          <span>◆</span>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-pills-container">
+        <button class="filter-pill active" data-filter="all">All Stories</button>
+        <button class="filter-pill" data-filter="royal">Royal Phere</button>
+        <button class="filter-pill" data-filter="prewedding">Pre-Wedding</button>
+        <button class="filter-pill" data-filter="haldi">Haldi &amp; Joy</button>
+        <button class="filter-pill" data-filter="bridal">Bridal Portraits</button>
+        <button class="filter-pill" data-filter="reception">Reception &amp; Party</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Item 1: Hero Royal Wedding -->
+        <div class="gallery-card" data-category="royal" data-title="The Palace Union • Udaipur" data-desc="A royal dusk ceremony amidst ancient architecture and glowing heritage lamps.">
+          <div class="gallery-img-wrap">
+            <img src="assets/hero_wedding.jpg" alt="Royal Wedding at Udaipur Palace" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-badge"><i class="fa-solid fa-crown"></i> Royal Union</span>
+              <span class="view-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+            </div>
+          </div>
+          <div class="gallery-meta">
+            <h4>The Royal Heritage Wedding</h4>
+            <p>Udaipur Palace, Rajasthan</p>
+          </div>
+        </div>
+
+        <!-- Item 2: Pre-Wedding Sunset -->
+        <div class="gallery-card" data-category="prewedding" data-title="Golden Hour Euphoria • Pre-Wedding" data-desc="Capturing untamed romance and emerald flowing silks amidst scenic mountain vistas.">
+          <div class="gallery-img-wrap">
+            <img src="assets/prewedding_sunset.jpg" alt="Romantic Pre-Wedding Sunset" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-badge"><i class="fa-solid fa-heart"></i> Pre-Wedding</span>
+              <span class="view-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+            </div>
+          </div>
+          <div class="gallery-meta">
+            <h4>Sunset Whispers</h4>
+            <p>Golden Hour Cinematic Shoot</p>
+          </div>
+        </div>
+
+        <!-- Item 3: Haldi Celebration -->
+        <div class="gallery-card" data-category="haldi" data-title="Floral Haldi Celebration" data-desc="Unfiltered laughter, marigold petal showers, and golden blessings with family.">
+          <div class="gallery-img-wrap">
+            <img src="assets/haldi_ceremony.jpg" alt="Joyful Haldi Ceremony" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-badge"><i class="fa-solid fa-sun"></i> Haldi Ritual</span>
+              <span class="view-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+            </div>
+          </div>
+          <div class="gallery-meta">
+            <h4>Vibrant Haldi &amp; Marigolds</h4>
+            <p>Ahmedabad Resort</p>
+          </div>
+        </div>
+
+        <!-- Item 4: Royal Phere Ritual -->
+        <div class="gallery-card" data-category="royal" data-title="Sacred Vows by the Holy Fire" data-desc="Emotional saptapadi pheras wrapped in rose petals, sacred chants, and unconditional promises.">
+          <div class="gallery-img-wrap">
+            <img src="assets/royal_phere.jpg" alt="Sacred Phere by the Fire" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-badge"><i class="fa-solid fa-fire"></i> Sacred Phere</span>
+              <span class="view-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+            </div>
+          </div>
+          <div class="gallery-meta">
+            <h4>The Sacred Saptapadi</h4>
+            <p>Traditional Gujarati &amp; Royal Rituals</p>
+          </div>
+        </div>
+
+        <!-- Item 5: Bridal Elegance -->
+        <div class="gallery-card" data-category="bridal" data-title="The Royal Gujarati Bride" data-desc="Handcrafted velvet lehenga, heirloom kundan jewellery, and radiant bridal grace.">
+          <div class="gallery-img-wrap">
+            <img src="assets/bridal_portrait.jpg" alt="Editorial Bridal Portrait" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-badge"><i class="fa-solid fa-gem"></i> Bridal Royalty</span>
+              <span class="view-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+            </div>
+          </div>
+          <div class="gallery-meta">
+            <h4>Heirloom Bridal Portrait</h4>
+            <p>Editorial Fine Art Series</p>
+          </div>
+        </div>
+
+        <!-- Item 6: Cinematic Reception -->
+        <div class="gallery-card" data-category="reception" data-title="Cold Pyro Grand Reception" data-desc="Electrifying grand entrance with cold sparkles, champagne toasts, and midnight dancing.">
+          <div class="gallery-img-wrap">
+            <img src="assets/cinematic_reception.jpg" alt="Reception Grand Entrance" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-badge"><i class="fa-solid fa-champagne-glasses"></i> Reception</span>
+              <span class="view-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+            </div>
+          </div>
+          <div class="gallery-meta">
+            <h4>The Grand Reception Night</h4>
+            <p>Sparklers &amp; Cinematic Romance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CINEMATOGRAPHY PACKAGES -->
+    <section class="card packages-section" id="packagesSection">
+      <div class="section-heading-box">
+        <span class="section-kicker">Curated Collections</span>
+        <h2 class="section-title">Wedding Experiences</h2>
+        <div class="gold-ornament-line"><span>◆</span></div>
+      </div>
+
+      <div class="package-list">
+        <!-- Package 1: Royal Heritage -->
+        <div class="package-card featured-pkg">
+          <div class="popular-ribbon"><i class="fa-solid fa-crown"></i> Most Loved</div>
+          <div class="pkg-header">
+            <h3>The Royal Heritage</h3>
+            <p class="pkg-sub">Complete 3-Day Grand Wedding Story</p>
+          </div>
+          <ul class="pkg-features">
+            <li><i class="fa-solid fa-circle-check"></i> <strong>2 Senior Candid Photographers</strong> + 2 Traditional Crew</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>4K Cinema Film Rig</strong> (Sony FX3 Cinema Line)</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>4K Drone Aerial Cinematography</strong></li>
+            <li><i class="fa-solid fa-circle-check"></i> 1 Cinematic Teaser (3-5 Min) + Full 45-Min Feature Film</li>
+            <li><i class="fa-solid fa-circle-check"></i> Same-Day Instagram Reel for Instant Viral Buzz</li>
+            <li><i class="fa-solid fa-circle-check"></i> 2 Handcrafted Leather-Bound Flush Mount Photobooks</li>
+            <li><i class="fa-solid fa-circle-check"></i> Google Drive Cloud Delivery with Lifetime Access</li>
+          </ul>
+          <div class="pkg-footer">
+            <button class="btn btn-gold book-pkg-btn" data-pkg="The Royal Heritage (3-Day Complete Wedding)">
+              <span>Check Dates for This Package</span>
+              <i class="fa-brands fa-whatsapp"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Package 2: Cinematic Love Story -->
+        <div class="package-card">
+          <div class="pkg-header">
+            <h3>The Cinematic Story</h3>
+            <p class="pkg-sub">Pre-Wedding Shoot + 2-Day Wedding</p>
+          </div>
+          <ul class="pkg-features">
+            <li><i class="fa-solid fa-circle-check"></i> 1 Full-Day Concept Pre-Wedding Shoot with 2 Outfits</li>
+            <li><i class="fa-solid fa-circle-check"></i> 2 Days Complete Wedding &amp; Reception Coverage</li>
+            <li><i class="fa-solid fa-circle-check"></i> Candid &amp; Traditional Dual Lens Crew</li>
+            <li><i class="fa-solid fa-circle-check"></i> 4K Teaser + Extended Wedding Documentary</li>
+            <li><i class="fa-solid fa-circle-check"></i> 1 Premium Wedding Photo Album</li>
+          </ul>
+          <div class="pkg-footer">
+            <button class="btn btn-outline-gold book-pkg-btn" data-pkg="The Cinematic Story (Pre-Wedding + 2-Day Wedding)">
+              <span>Inquire Package Details</span>
+              <i class="fa-brands fa-whatsapp"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Package 3: Intimate Celebrations -->
+        <div class="package-card">
+          <div class="pkg-header">
+            <h3>Intimate Rituals</h3>
+            <p class="pkg-sub">Haldi, Mehendi, Sangeet or Single Day</p>
+          </div>
+          <ul class="pkg-features">
+            <li><i class="fa-solid fa-circle-check"></i> Full Day Event Coverage (Up to 8 Hours)</li>
+            <li><i class="fa-solid fa-circle-check"></i> Candid &amp; Ritual Photography</li>
+            <li><i class="fa-solid fa-circle-check"></i> Ultra HD Highlight Video Reel</li>
+            <li><i class="fa-solid fa-circle-check"></i> All High-Res Color Graded Digital Files on Drive</li>
+          </ul>
+          <div class="pkg-footer">
+            <button class="btn btn-outline-gold book-pkg-btn" data-pkg="Intimate Rituals (Single Day / Haldi / Sangeet)">
+              <span>Inquire Package Details</span>
+              <i class="fa-brands fa-whatsapp"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE DATE AVAILABILITY & QUOTE BUILDER -->
+    <section class="card booking-calc-section" id="bookingSection">
+      <div class="section-heading-box">
+        <span class="section-kicker">Reserve Your Date</span>
+        <h2 class="section-title">Check Availability &amp; Get Quote</h2>
+        <p class="section-desc">We accept limited wedding bookings each season to ensure handcrafted perfection for every couple.</p>
+        <div class="gold-ornament-line"><span>◆</span></div>
+      </div>
+
+      <form class="booking-form" id="weddingInquiryForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="clientName"><i class="fa-solid fa-user"></i> Your Name / Bride &amp; Groom Name</label>
+          <input type="text" id="clientName" placeholder="e.g. Yash &amp; Khushi" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="eventDate"><i class="fa-solid fa-calendar-days"></i> Wedding / Event Date</label>
+            <input type="date" id="eventDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="eventType"><i class="fa-solid fa-ring"></i> Event Type</label>
+            <select id="eventType" required>
+              <option value="Full Wedding (3 Days)">Full Royal Wedding (3 Days)</option>
+              <option value="Wedding & Reception (2 Days)">Wedding &amp; Reception (2 Days)</option>
+              <option value="Destination Wedding">Destination Wedding</option>
+              <option value="Pre-Wedding Shoot">Pre-Wedding Shoot Only</option>
+              <option value="Haldi / Mehendi / Sangeet">Haldi / Sangeet / Engagement</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="eventCity"><i class="fa-solid fa-map-pin"></i> Wedding City / Location</label>
+            <input type="text" id="eventCity" placeholder="e.g. Ahmedabad, Udaipur, Surat..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="guestEstimate"><i class="fa-solid fa-users"></i> Expected Guests</label>
+            <select id="guestEstimate">
+              <option value="Intimate (Under 200)">Intimate (&lt; 200 Guests)</option>
+              <option value="Grand (200 - 500)" selected>Grand (200 - 500 Guests)</option>
+              <option value="Royal (500+ Guests)">Royal (500+ Guests)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="specialNotes"><i class="fa-solid fa-message"></i> Special Vision / Requests (Optional)</label>
+          <textarea id="specialNotes" rows="2" placeholder="Tell us about your venue, themes, or drone preferences..."></textarea>
+        </div>
+
+        <button type="button" class="btn btn-gold-shimmer w-100" id="sendWhatsAppInquiryBtn">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Check Availability on WhatsApp</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- WHY COUPLES CHOOSE WED GATHA -->
+    <section class="card why-choose-card">
+      <div class="section-heading-box">
+        <span class="section-kicker">The Wed Gatha Standard</span>
+        <h2 class="section-title">Why Couples Choose Us</h2>
+        <div class="gold-ornament-line"><span>◆</span></div>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fa-solid fa-video"></i></div>
+          <div class="feature-content">
+            <h4>Cinema-Grade Color Science</h4>
+            <p>Custom film luts tailored to Indian skin tones, vibrant royal reds, and golden ambient glows.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+          <div class="feature-content">
+            <h4>Lightning Fast Delivery</h4>
+            <p>Instagram Reels within 48 hours and master photobooks dispatched within 25 working days.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fa-solid fa-feather-pointed"></i></div>
+          <div class="feature-content">
+            <h4>Unobtrusive Candid Art</h4>
+            <p>We blend in seamlessly to capture pure, unscripted emotional tears and ecstatic family laughter.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <div class="feature-content">
+            <h4>Lifetime Cloud Archive</h4>
+            <p>All your full-resolution 4K stills and films securely backed up on high-speed private cloud drives.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS / CLIENT LOVE -->
+    <section class="card reviews-card">
+      <div class="section-heading-box">
+        <span class="section-kicker">Words of Love</span>
+        <h2 class="section-title">What Our Couples Say</h2>
+        <div class="gold-ornament-line"><span>◆</span></div>
+      </div>
+
+      <div class="testimonials-slider">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"Booking Wed Gatha was the best decision of our Udaipur wedding! Every single photograph feels like a painting. Our teaser made all our relatives cry with joy!"</p>
+          <div class="couple-tag">
+            <strong>— Parth &amp; Saloni</strong>
+            <span>Destination Wedding • Udaipur Palace</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"The team made us feel so comfortable during our pre-wedding and wedding rituals. Their attention to detail, lighting, and quick delivery is unmatched!"</p>
+          <div class="couple-tag">
+            <strong>— Dhruv &amp; Radhika</strong>
+            <span>Ahmedabad Grand Wedding</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL & CONNECT STRIP -->
+    <section class="card connect-card">
+      <h3 class="connect-title">Follow Our Daily Stories</h3>
+      <p class="connect-sub">Witness live wedding reels, behind-the-scenes magic, and real wedding inspiration on Instagram.</p>
+      
+      <div class="social-links-row">
+        <a href="https://www.instagram.com/wedgatha?stkn=MXJyeWE0MDk2M3F6dQ%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="social-btn insta-glow">
+          <i class="fa-brands fa-instagram"></i>
+          <span>Follow @wedgatha</span>
+        </a>
+
+        <a href="https://drive.google.com/drive/folders/1QYVouFYn7nww5XHSVLKSc4MqvQLV4239" target="_blank" rel="noopener" class="social-btn drive-glow">
+          <i class="fa-brands fa-google-drive"></i>
+          <span>Drive Showcase</span>
+        </a>
+      </div>
+
+      <div class="direct-contact-list">
+        <div class="contact-row">
+          <i class="fa-solid fa-phone gold-text"></i>
+          <div>
+            <span class="c-title">Direct Calling</span>
+            <a href="tel:+919586860707" class="c-val">(+91) 9586860707</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <i class="fa-brands fa-whatsapp gold-text"></i>
+          <div>
+            <span class="c-title">WhatsApp Booking Desk</span>
+            <a href="https://wa.me/919586860707" target="_blank" rel="noopener" class="c-val">+91 9586860707</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <i class="fa-solid fa-envelope gold-text"></i>
+          <div>
+            <span class="c-title">Official Email</span>
+            <a href="mailto:wedgaatha@gmail.com" class="c-val">wedgaatha@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <div class="footer-logo">
+        <span class="logo-script-wed">Wed</span>
+        <span class="logo-gujarati-gatha">ગાથા</span>
+      </div>
+      <p class="footer-tagline">“Crafting eternal heirlooms out of fleeting love stories.”</p>
+      <p class="copyright">© 2026 Wed Gatha. All rights reserved. • NFC Smart Digital Card</p>
+    </footer>
+
+  </main>
+
+  <!-- STICKY BOTTOM MOBILE DOCK -->
+  <nav class="bottom-dock">
+    <a href="tel:+919586860707" class="dock-item" title="Call Now">
+      <i class="fa-solid fa-phone"></i>
+      <span>Call</span>
+    </a>
+    <a href="https://wa.me/919586860707" target="_blank" rel="noopener" class="dock-item dock-whatsapp" title="Chat on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+    <button class="dock-item dock-save-btn" id="dockSaveBtn" title="Save Contact">
+      <div class="dock-center-pill">
+        <i class="fa-solid fa-user-plus"></i>
+      </div>
+      <span>Save vCard</span>
+    </button>
+    <a href="#portfolioSection" class="dock-item" title="Portfolio">
+      <i class="fa-solid fa-images"></i>
+      <span>Gallery</span>
+    </a>
+    <button class="dock-item" id="dockShareBtn" title="Share NFC">
+      <i class="fa-solid fa-share-nodes"></i>
+      <span>Share</span>
+    </button>
+  </nav>
+
+  <!-- SHARE & QR CODE MODAL -->
+  <div class="modal-backdrop" id="shareModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="closeShareModal">&times;</button>
+      <div class="modal-header">
+        <div class="modal-icon"><i class="fa-solid fa-qrcode"></i></div>
+        <h3>Share Wed Gatha NFC Card</h3>
+        <p>Scan with any camera or share the direct link with clients and friends.</p>
+      </div>
+      
+      <div class="qr-preview-box">
+        <div id="qrCanvasContainer">
+          <!-- Dynamic SVG QR Code will be drawn here -->
+        </div>
+        <span class="qr-scan-hint"><i class="fa-solid fa-wifi"></i> Instant NFC &amp; QR Profile</span>
+      </div>
+
+      <div class="share-actions-list">
+        <button class="btn btn-outline-gold w-100 mb-2" id="nativeShareBtn">
+          <i class="fa-solid fa-share-nodes"></i> Share via Apps (WhatsApp / AirDrop)
+        </button>
+        <button class="btn btn-gold w-100" id="copyLinkBtn">
+          <i class="fa-solid fa-copy"></i> Copy Profile Link
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN HD LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fa-solid fa-chevron-right"></i></button>
+    
+    <div class="lightbox-content">
+      <div class="lightbox-img-wrapper">
+        <img src="" alt="Wed Gatha High-Res Wedding" id="lightboxImg">
+      </div>
+      <div class="lightbox-caption">
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxDesc"></p>
+        <a href="" id="lightboxInquireBtn" target="_blank" rel="noopener" class="btn btn-sm btn-gold">
+          <i class="fa-brands fa-whatsapp"></i> Inquire This Look
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast"></div>
+
+  <!-- Custom Scripts -->
+  <script src="js/app.js"></script>
+</body>
+</html>

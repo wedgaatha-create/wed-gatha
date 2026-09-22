@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="30%" stop-color="#FFF2CC"/>
+      <stop offset="70%" stop-color="#E5C158"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&amp;family=Rasa:wght@600;700&amp;display=swap');
+    .wed-text {
+      font-family: 'Alex Brush', 'Brush Script MT', cursive;
+      font-size: 195px;
+      font-weight: normal;
+      fill: #FFFFFF;
+      letter-spacing: -2px;
+    }
+    .gatha-text {
+      font-family: 'Rasa', 'Noto Serif Gujarati', 'Shruti', serif;
+      font-size: 78px;
+      font-weight: 700;
+      fill: url(#goldGradient);
+      letter-spacing: 12px;
+    }
+    .sub-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 7px;
+      fill: #C9A96E;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <!-- Luxury Flourish Accent Top/Bottom -->
+  <g opacity="0.85">
+    <!-- Cursive 'Wed' in center/top -->
+    <text x="360" y="220" text-anchor="middle" class="wed-text" filter="url(#glow)">Wed</text>
+    
+    <!-- Gujarati 'ગાથા' with elegant spacing and royal styling -->
+    <text x="490" y="325" text-anchor="middle" class="gatha-text">ગાથા</text>
+    
+    <!-- Subtitle -->
+    <text x="400" y="380" text-anchor="middle" class="sub-tagline">WEDDING CINEMATOGRAPHY</text>
+  </g>
+</svg>
