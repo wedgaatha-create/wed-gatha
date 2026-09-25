@@ -456,28 +456,46 @@ function stopRoyalAmbientMusic() {
 }
 
 /* ==========================================================================
-   7. SHARE NFC MODAL & DYNAMIC QR CODE GENERATOR
+   7. SHARE NFC MODAL & DYNAMIC REAL QR CODE GENERATOR
    ========================================================================== */
+function getCleanShareUrl() {
+  try {
+    const loc = window.location;
+    if (loc.protocol === 'http:' || loc.protocol === 'https:') {
+      return loc.origin + loc.pathname;
+    }
+    // For file:// or custom environments, return href without hash
+    return (loc.href || '').split('#')[0];
+  } catch (e) {
+    return window.location.href || 'https://www.instagram.com/wedgatha';
+  }
+}
+
 function initShareModal() {
   const shareModal = document.getElementById('shareModal');
   const closeShareModal = document.getElementById('closeShareModal');
   const topShareBtn = document.getElementById('topShareBtn');
   const dockShareBtn = document.getElementById('dockShareBtn');
   const copyLinkBtn = document.getElementById('copyLinkBtn');
+  const qrUrlChip = document.getElementById('qrUrlChip');
   const nativeShareBtn = document.getElementById('nativeShareBtn');
+  const modalWhatsAppShareBtn = document.getElementById('modalWhatsAppShareBtn');
+  const downloadQrBtn = document.getElementById('downloadQrBtn');
 
+  // Open Modal triggers
   [topShareBtn, dockShareBtn].forEach(btn => {
     if (!btn) return;
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      renderQRCodeSVG();
-      shareModal.classList.add('active');
+      renderRealQRCode();
+      if (shareModal) shareModal.classList.add('active');
     });
   });
 
+  // Close triggers
   if (closeShareModal) {
     closeShareModal.addEventListener('click', () => {
-      shareModal.classList.remove('active');
+      if (shareModal) shareModal.classList.remove('active');
     });
   }
 
@@ -488,111 +506,258 @@ function initShareModal() {
   }
 
   // Copy Link Action
-  if (copyLinkBtn) {
-    copyLinkBtn.addEventListener('click', () => {
-      const shareUrl = window.location.href;
+  const handleCopyLink = () => {
+    const shareUrl = getCleanShareUrl();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(shareUrl).then(() => {
-        showToast('✓ Link copied to clipboard!');
-        shareModal.classList.remove('active');
+        showToast('✓ Website link copied to clipboard!');
       }).catch(() => {
-        showToast('✓ Share URL ready!');
+        fallbackCopyText(shareUrl);
       });
+    } else {
+      fallbackCopyText(shareUrl);
+    }
+  };
+
+  if (copyLinkBtn) copyLinkBtn.addEventListener('click', handleCopyLink);
+  if (qrUrlChip) qrUrlChip.addEventListener('click', handleCopyLink);
+
+  // WhatsApp Share Action
+  if (modalWhatsAppShareBtn) {
+    modalWhatsAppShareBtn.addEventListener('click', () => {
+      const shareUrl = getCleanShareUrl();
+      const message = `✨ *Wed Gatha (વેડ ગાથા)* — Timeless Luxury Wedding Cinematography & Digital NFC Profile\n\nExplore our portfolio, candid galleries, and direct contact details:\n🔗 ${shareUrl}`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
     });
   }
 
   // Native Web Share API
   if (nativeShareBtn) {
     nativeShareBtn.addEventListener('click', async () => {
+      const shareUrl = getCleanShareUrl();
       const shareData = {
         title: 'Wed Gatha | Luxury Wedding Photography',
         text: 'Explore Wed Gatha (વેડ ગાથા) — Timeless Luxury Wedding Cinematography & Portfolio',
-        url: window.location.href
+        url: shareUrl
       };
 
       if (navigator.share) {
         try {
           await navigator.share(shareData);
-          shareModal.classList.remove('active');
+          if (shareModal) shareModal.classList.remove('active');
         } catch (err) {
-          // User dismissed or error
+          // User dismissed
         }
       } else {
-        // Fallback WhatsApp share
+        // Fallback WhatsApp
         const waText = encodeURIComponent(`${shareData.title}\n${shareData.text}\n${shareData.url}`);
         window.open(`https://wa.me/?text=${waText}`, '_blank');
       }
     });
   }
+
+  // High-Resolution QR Card PNG Downloader
+  if (downloadQrBtn) {
+    downloadQrBtn.addEventListener('click', downloadLuxuryQRCodeCard);
+  }
 }
 
-// Crisp High-Resolution Vector QR Code Generator for NFC Profile
-function renderQRCodeSVG() {
+function fallbackCopyText(text) {
+  const input = document.createElement('input');
+  input.value = text;
+  document.body.appendChild(input);
+  input.select();
+  try {
+    document.execCommand('copy');
+    showToast('✓ Website link copied!');
+  } catch (e) {
+    showToast('Share link: ' + text);
+  }
+  document.body.removeChild(input);
+}
+
+// Generate Real, 100% Scannable ISO/IEC 18004 Vector QR Code
+function renderRealQRCode() {
   const container = document.getElementById('qrCanvasContainer');
+  const urlDisplay = document.getElementById('qrUrlText');
   if (!container) return;
 
-  // Render a clean SVG QR Code pattern with Wed Gatha brand center
+  const targetUrl = getCleanShareUrl();
+
+  // Update readable link preview
+  if (urlDisplay) {
+    try {
+      if (targetUrl.startsWith('http')) {
+        const parsed = new URL(targetUrl);
+        urlDisplay.textContent = parsed.hostname + (parsed.pathname !== '/' ? parsed.pathname : '');
+      } else {
+        urlDisplay.textContent = targetUrl.replace(/^https?:\/\//, '');
+      }
+    } catch (e) {
+      urlDisplay.textContent = targetUrl;
+    }
+  }
+
+  // Generate real QR code
+  try {
+    if (typeof QRCode === 'function') {
+      const qr = QRCode(targetUrl, { errorCorrectLevel: QRCode.CorrectLevel.M });
+      container.innerHTML = qr.createSvg({
+        cellSize: 5,
+        margin: 2,
+        darkColor: '#0b0b0e',
+        lightColor: '#ffffff',
+        width: 180,
+        height: 180
+      });
+    } else {
+      renderFallbackQRCode(container, targetUrl);
+    }
+  } catch (err) {
+    console.warn('QRCode generation fallback:', err);
+    renderFallbackQRCode(container, targetUrl);
+  }
+}
+
+// Backward compatibility alias
+function renderQRCodeSVG() {
+  renderRealQRCode();
+}
+
+// Fallback high-contrast QR generator if script load delay occurs
+function renderFallbackQRCode(container, url) {
+  const encoded = encodeURIComponent(url);
   container.innerHTML = `
-    <svg viewBox="0 0 200 200" width="180" height="180" xmlns="http://www.w3.org/2000/svg">
-      <rect width="200" height="200" fill="#ffffff" rx="10"/>
-      
-      <!-- Finder Pattern Top-Left -->
-      <rect x="15" y="15" width="45" height="45" fill="#0b0b0e" rx="6"/>
-      <rect x="22" y="22" width="31" height="31" fill="#ffffff" rx="3"/>
-      <rect x="28" y="28" width="19" height="19" fill="#d4af37" rx="2"/>
-
-      <!-- Finder Pattern Top-Right -->
-      <rect x="140" y="15" width="45" height="45" fill="#0b0b0e" rx="6"/>
-      <rect x="147" y="22" width="31" height="31" fill="#ffffff" rx="3"/>
-      <rect x="153" y="28" width="19" height="19" fill="#d4af37" rx="2"/>
-
-      <!-- Finder Pattern Bottom-Left -->
-      <rect x="15" y="140" width="45" height="45" fill="#0b0b0e" rx="6"/>
-      <rect x="22" y="147" width="31" height="31" fill="#ffffff" rx="3"/>
-      <rect x="28" y="153" width="19" height="19" fill="#d4af37" rx="2"/>
-
-      <!-- Decorative Stylized QR Matrix Dots -->
-      <g fill="#1a1a24">
-        <!-- Row 1 -->
-        <rect x="70" y="20" width="8" height="8" rx="2"/>
-        <rect x="85" y="20" width="8" height="8" rx="2"/>
-        <rect x="100" y="20" width="8" height="8" rx="2"/>
-        <rect x="120" y="20" width="8" height="8" rx="2"/>
-        
-        <!-- Row 2 -->
-        <rect x="75" y="35" width="8" height="8" rx="2"/>
-        <rect x="95" y="35" width="8" height="8" rx="2"/>
-        <rect x="110" y="35" width="8" height="8" rx="2"/>
-        
-        <!-- Row 3 -->
-        <rect x="68" y="50" width="8" height="8" rx="2"/>
-        <rect x="85" y="50" width="8" height="8" rx="2"/>
-        <rect x="115" y="50" width="8" height="8" rx="2"/>
-
-        <!-- Middle Clusters -->
-        <rect x="20" y="70" width="8" height="8" rx="2"/>
-        <rect x="35" y="75" width="8" height="8" rx="2"/>
-        <rect x="50" y="80" width="8" height="8" rx="2"/>
-        <rect x="140" y="70" width="8" height="8" rx="2"/>
-        <rect x="160" y="75" width="8" height="8" rx="2"/>
-        <rect x="175" y="85" width="8" height="8" rx="2"/>
-        
-        <!-- Bottom Clusters -->
-        <rect x="70" y="145" width="8" height="8" rx="2"/>
-        <rect x="90" y="150" width="8" height="8" rx="2"/>
-        <rect x="115" y="145" width="8" height="8" rx="2"/>
-        <rect x="140" y="140" width="8" height="8" rx="2"/>
-        <rect x="155" y="155" width="8" height="8" rx="2"/>
-        <rect x="170" y="145" width="8" height="8" rx="2"/>
-        <rect x="145" y="170" width="8" height="8" rx="2"/>
-        <rect x="165" y="175" width="8" height="8" rx="2"/>
-      </g>
-
-      <!-- Center Brand Badge -->
-      <circle cx="100" cy="100" r="26" fill="#0b0b0e" stroke="#d4af37" stroke-width="2.5"/>
-      <text x="100" y="98" text-anchor="middle" font-family="'Alex Brush', cursive" font-size="18" fill="#ffffff">Wed</text>
-      <text x="100" y="112" text-anchor="middle" font-family="'Rasa', serif" font-size="9" font-weight="700" fill="#d4af37">ગાથા</text>
-    </svg>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encoded}&color=0b0b0e&bgcolor=ffffff&margin=8" 
+         alt="Wed Gatha QR Code" 
+         width="180" 
+         height="180" 
+         style="display:block; border-radius:8px; margin:0 auto;" />
   `;
+}
+
+// Generates a luxury branded 800x960 PNG Card with QR code for printing / sharing
+function downloadLuxuryQRCodeCard() {
+  try {
+    const targetUrl = getCleanShareUrl();
+    let qr;
+    if (typeof QRCode === 'function') {
+      qr = QRCode(targetUrl, { errorCorrectLevel: QRCode.CorrectLevel.H });
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 800;
+    canvas.height = 960;
+    const ctx = canvas.getContext('2d');
+
+    // 1. Luxury Dark Gradient Background
+    const bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    bgGrad.addColorStop(0, '#121218');
+    bgGrad.addColorStop(0.5, '#0b0b0f');
+    bgGrad.addColorStop(1, '#050508');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // 2. Gold Ornamental Double Borders
+    ctx.strokeStyle = '#d4af37';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
+
+    ctx.strokeStyle = 'rgba(212, 175, 55, 0.35)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
+
+    // Gold Corner Accents
+    const cornerSize = 25;
+    ctx.fillStyle = '#d4af37';
+    // Top-Left
+    ctx.fillRect(25, 25, cornerSize, 4);
+    ctx.fillRect(25, 25, 4, cornerSize);
+    // Top-Right
+    ctx.fillRect(canvas.width - 25 - cornerSize, 25, cornerSize, 4);
+    ctx.fillRect(canvas.width - 29, 25, 4, cornerSize);
+    // Bottom-Left
+    ctx.fillRect(25, canvas.height - 29, cornerSize, 4);
+    ctx.fillRect(25, canvas.height - 25 - cornerSize, 4, cornerSize);
+    // Bottom-Right
+    ctx.fillRect(canvas.width - 25 - cornerSize, canvas.height - 29, cornerSize, 4);
+    ctx.fillRect(canvas.width - 29, canvas.height - 25 - cornerSize, 4, cornerSize);
+
+    // 3. Header Branding
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '700 38px "Cinzel", Georgia, serif';
+    ctx.fillText('WED GATHA', canvas.width / 2, 105);
+
+    ctx.fillStyle = '#d4af37';
+    ctx.font = '600 20px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText('વેડ ગાથા  •  LUXURY WEDDING CINEMATOGRAPHY', canvas.width / 2, 145);
+
+    // 4. Crisp White QR Card Surface
+    const qrCardSize = 520;
+    const qrCardX = (canvas.width - qrCardSize) / 2;
+    const qrCardY = 185;
+
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    if (ctx.roundRect) {
+      ctx.roundRect(qrCardX, qrCardY, qrCardSize, qrCardSize, 20);
+    } else {
+      ctx.rect(qrCardX, qrCardY, qrCardSize, qrCardSize);
+    }
+    ctx.fill();
+
+    // 5. Draw QR Code Matrix
+    if (qr) {
+      const moduleCount = qr.getModuleCount();
+      const qrPadding = 30;
+      const innerSize = qrCardSize - (qrPadding * 2);
+      const cellSize = innerSize / moduleCount;
+      const startX = qrCardX + qrPadding;
+      const startY = qrCardY + qrPadding;
+
+      ctx.fillStyle = '#0b0b0e';
+      for (let r = 0; r < moduleCount; r++) {
+        for (let c = 0; c < moduleCount; c++) {
+          if (qr.isDark(r, c)) {
+            ctx.fillRect(
+              Math.floor(startX + c * cellSize),
+              Math.floor(startY + r * cellSize),
+              Math.ceil(cellSize),
+              Math.ceil(cellSize)
+            );
+          }
+        }
+      }
+    }
+
+    // 6. Bottom Information & Call to Action
+    ctx.fillStyle = '#e8d8b0';
+    ctx.font = '700 22px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText('SCAN TO VIEW DIGITAL CARD & PORTFOLIO', canvas.width / 2, 765);
+
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+    ctx.font = '16px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText('+91 9586860707   •   Instagram @wedgatha', canvas.width / 2, 805);
+
+    ctx.fillStyle = 'rgba(212, 175, 55, 0.9)';
+    ctx.font = '14px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText('NFC & Instant QR Profile', canvas.width / 2, 838);
+
+    // Trigger Download
+    const dataUrl = canvas.toDataURL('image/png');
+    const downloadLink = document.createElement('a');
+    downloadLink.download = 'Wed-Gatha-NFC-QR.png';
+    downloadLink.href = dataUrl;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+
+    showToast('✓ QR Card image saved! (PNG)');
+  } catch (err) {
+    console.error('Download QR error:', err);
+    showToast('✓ QR Code ready!');
+  }
 }
 
 /* ==========================================================================

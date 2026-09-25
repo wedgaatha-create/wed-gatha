@@ -582,7 +582,7 @@
   <!-- SHARE & QR CODE MODAL -->
   <div class="modal-backdrop" id="shareModal">
     <div class="modal-box">
-      <button class="modal-close-btn" id="closeShareModal">&times;</button>
+      <button class="modal-close-btn" id="closeShareModal" aria-label="Close Share Modal">&times;</button>
       <div class="modal-header">
         <div class="modal-icon"><i class="fa-solid fa-qrcode"></i></div>
         <h3>Share Wed Gatha NFC Card</h3>
@@ -591,17 +591,30 @@
       
       <div class="qr-preview-box">
         <div id="qrCanvasContainer">
-          <!-- Dynamic SVG QR Code will be drawn here -->
+          <!-- Dynamic High-Res Scannable QR Code rendered here -->
         </div>
-        <span class="qr-scan-hint"><i class="fa-solid fa-wifi"></i> Instant NFC &amp; QR Profile</span>
+        <div class="qr-url-chip" id="qrUrlChip" title="Click to copy link">
+          <i class="fa-solid fa-link"></i>
+          <span id="qrUrlText">Loading link...</span>
+          <i class="fa-regular fa-copy chip-copy-icon"></i>
+        </div>
+        <span class="qr-scan-hint"><i class="fa-solid fa-camera"></i> Point phone camera to open website</span>
       </div>
 
       <div class="share-actions-list">
-        <button class="btn btn-outline-gold w-100 mb-2" id="nativeShareBtn">
-          <i class="fa-solid fa-share-nodes"></i> Share via Apps (WhatsApp / AirDrop)
+        <button class="btn btn-whatsapp-share w-100 mb-2" id="modalWhatsAppShareBtn">
+          <i class="fa-brands fa-whatsapp"></i> Share on WhatsApp
         </button>
-        <button class="btn btn-gold w-100" id="copyLinkBtn">
-          <i class="fa-solid fa-copy"></i> Copy Profile Link
+        <div class="share-btn-row mb-2">
+          <button class="btn btn-outline-gold flex-1" id="nativeShareBtn">
+            <i class="fa-solid fa-share-nodes"></i> Share via Apps
+          </button>
+          <button class="btn btn-gold flex-1" id="copyLinkBtn">
+            <i class="fa-solid fa-copy"></i> Copy Link
+          </button>
+        </div>
+        <button class="btn btn-download-qr w-100" id="downloadQrBtn">
+          <i class="fa-solid fa-download"></i> Save QR Card Image (PNG)
         </button>
       </div>
     </div>
@@ -631,6 +644,7 @@
   <div class="toast-notification" id="toast"></div>
 
   <!-- Custom Scripts -->
+  <script src="js/qrcode.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
